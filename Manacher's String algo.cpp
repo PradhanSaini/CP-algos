@@ -11,7 +11,6 @@ string modified(string s)
          ans+='#';
          ans+=s[i];
       }
-   cout<<endl<<ans<<endl;
    return ans;
 }
 
@@ -24,35 +23,35 @@ vector<int> manachar(string s){
             if(i<=r)
                 d1[i]=min(d1[l+r-i],r-i+1);
             else d1[i]=1;
-
-            while(i-d1[i]>=0 and i+d1[i]<n and s[i-d1[i]]==s[i+d1[i]])
-            d1[i]++;
-            
-            if(i+d1[i]>r)
+            int k=d1[i];
+            while(i-k>=0 and i+k<n and s[i-k]==s[i+k])
             {
-                r=i+d1[i]-1;
-                l=i-d1[i]+1;
+               if(s[i-k]!='#')
+                  d1[i]++;
+               k++;
+            }
+            
+            if(i+k>r)
+            {
+                r=i+k-1;
+                l=i-k+1;
             }
         }
    return d1;     
 }
 
-void  fun(string s)
+void  manacharAlgo(string s)
 {
+   int n=s.size();
    vector<int> v1=manachar(s);
    string mod=modified(s);
-   vector<int> v2=manachar(mod);
-   for(int i=0;i<v1.size();i++)
-      cout<<v1[i]<<" ";
-   cout<<endl;
-   for(int i=0;i<v2.size();i++)
+   vector<int> v22=manachar(mod);
+
+   vector<int> v2;
+   for(int i=0;i<v22.size();i++)
       if(mod[i]=='#')
-            cout<<v2[i]/2<<" ";
+         v2.push_back(v22[i]-1);
 
-
-
-
-        
 }
 
 int main(){
