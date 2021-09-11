@@ -4,37 +4,37 @@ using namespace std;
 
 class trie{
 public:
-   unordered_map<char,trie*> node;
+   unordered_map<char,trie*> mp;
    bool isend=0;
 
 };
 
-void fill(string s,trie *root,int ind){
+void fill(string s,trie *node,int ind){
    if(ind==s.size())
    {
-      root->isend=1;
+      node->isend=1;
       return;
    }
-   if(root->node.find(s[ind])==root->node.end())
+   if(node->mp.find(s[ind])==node->mp.end())
    {
-      root->node[s[ind]]=new trie();
-      root=root->node[s[ind]];
-      fill(s,root,ind+1);
+      node->mp[s[ind]]=new trie();
+      node=node->mp[s[ind]];
+      fill(s,node,ind+1);
       return ;
    }
-   root=root->node[s[ind]];
-   fill(s,root,ind+1);
+   node=node->mp[s[ind]];
+   fill(s,node,ind+1);
 
 }
 
-bool check(string s,trie* root,int ind)
+bool check(string s,trie* node,int ind)
 {
    if(s.size()==ind)
    {
-      return root->isend;
+      return node->isend;
    }
-   if(root->node.find(s[ind])!=root->node.end())
-      return check(s,root->node[s[ind]],ind+1);
+   if(node->mp.find(s[ind])!=node->mp.end())
+      return check(s,node->mp[s[ind]],ind+1);
    return 0;
 }
 
