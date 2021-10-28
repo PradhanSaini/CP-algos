@@ -65,11 +65,13 @@ void solve(){
         if(qq==1){
             int ind,val;
             cin>>ind>>val;
+            //ind 0-indexed
             update(seg,1,0,n-1,ind,val,a);
         }
         else{
             int l,r;
             cin>>l>>r;
+            // l and r 0-indexed
             cout<<Q(seg,1,0,n-1,l,r)<<endl;
         }
 
