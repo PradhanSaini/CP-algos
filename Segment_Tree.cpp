@@ -2,12 +2,17 @@
 using namespace std;
 #define int long long
 
+
+void line(){
+    cout<<"^_______________^"<<endl;
+}
+
 int qtype1(int a,int b){
-    return a|b;
+    return __gcd(a,b);
 }
 
 int qtype2(int a,int b){
-    return a^b;
+    return a+b;
 }
 
 
@@ -23,14 +28,16 @@ void build(int seg[], int seg_ind, int arr_l, int arr_r,int arr[]) {
 }
 
 int Q(int seg[],int seg_ind, int arr_l, int arr_r, int l, int r) {
+    // cout<<"---->"<<l<<" "<<r<<endl;
     if (l > r) 
         return 0;
     if (l == arr_l && r == arr_r) {
         return seg[seg_ind];
+
     }
     int arr_m = (arr_l + arr_r) / 2;
-    return qtype1(Q(seg,seg_ind*2, arr_l, arr_m, l, min(r, arr_m))
-           , Q(seg,seg_ind*2+1, arr_m+1, arr_r, max(arr_l, arr_m+1), arr_r));
+    return qtype2(Q(seg,seg_ind*2, arr_l, arr_m, l, min(r, arr_m))
+           , Q(seg,seg_ind*2+1, arr_m+1, arr_r, max(l, arr_m+1), r));
 }
 
 void update(int seg[],int seg_ind, int arr_l, int arr_r, int pos, int new_val,int arr[]) {
@@ -48,28 +55,37 @@ void update(int seg[],int seg_ind, int arr_l, int arr_r, int pos, int new_val,in
 }
 
 void solve(){
-    int nn,q,n;
-    cin>>nn>>q;
-    n=(1<<nn);
+    int nn,n;
+    cin>>n;
+    // n=(1<<nn);
     int arr[n];
     for(int i=0;i<n;i++)
         cin>>arr[i];
     int seg[4*n]={0};
     build(seg,1,0,n-1,arr);
     // for(int i=0;i<4*n;i++)cout<<seg[i]<<" ";
-
+    int q;
+    cin>>q;
     for(int i=0;i<q;i++)
-    {
+    {   int qq;
+        cin>>qq;
+        if(qq==2)
         
         {
             int ind,val;
             cin>>ind>>val;
+            // ind is 1 indexed
+            ind--;
             update(seg,1,0,n-1,ind,val,arr);
         }
+        else
         {
             int l,r;
             cin>>l>>r;
-            Q(seg,1,0,n-1,l,r);
+            // l and r are 1 indexed
+            l--,r--;
+            cout<<Q(seg,1,0,n-1,l,r)<<"   ";
+            // line();
         }
 
         
