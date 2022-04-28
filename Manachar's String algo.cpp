@@ -26,8 +26,7 @@ vector<int> manachar(string s){
             int k=d1[i];
             while(i-k>=0 and i+k<n and s[i-k]==s[i+k])
             {
-               if(s[i-k]!='#')
-                  d1[i]++;
+               d1[i]++;
                k++;
             }
             
@@ -40,6 +39,10 @@ vector<int> manachar(string s){
    return d1;     
 }
 
+// aaaabb
+//v1= 1 2 2 1 1 1  on element
+//v2= 1 2 1 0 1    between element
+
 void  manacharAlgo(string s)
 {
    int n=s.size();
@@ -50,13 +53,13 @@ void  manacharAlgo(string s)
    vector<int> v2;
    for(int i=0;i<v22.size();i++)
       if(mod[i]=='#')
-         v2.push_back(v22[i]-1);
+         v2.push_back(v22[i]/2);
 
 }
 
 int main(){
    string s;
    while(cin>>s)
-   fun(s);
+   manacharALgo(s);
    return 0;
 }
