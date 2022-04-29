@@ -4,7 +4,7 @@ using namespace std;
 
 
 void line(){
-    cout<<"^_______________^"<<endl;
+    cout<<"--------------"<<endl;
 }
 
 int qtype1(int a,int b){
