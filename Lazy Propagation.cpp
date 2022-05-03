@@ -72,7 +72,6 @@ void update(ele seg[],int seg_ind, int arr_l, int arr_r, int l,int r,int new_val
 }
 
 void solve(){
-    pre();
     int n,q;
     cin>>n>>q;
     int arr[n]={0};
