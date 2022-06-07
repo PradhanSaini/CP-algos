@@ -34,7 +34,8 @@ void KMP(string &SS,string &S,int d[],int pi[])
     }
 }
 
-int period(string &t){
+int period(string &s){
+    string t="0"+s;
     int n=t.size()-1;
     string tt=t+t.substr(1,n);
     int pi[2*n+1]={0};
